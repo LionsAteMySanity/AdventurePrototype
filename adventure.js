@@ -91,6 +91,27 @@ class AdventureScene extends Phaser.Scene {
         });
     }
 
+    dissapear(item) {
+        this.tweens.add({
+            targets: item,
+            y: `+=${2 * this.s}`,
+            alpha: { from: 1, to: 0 },
+            duration: 500,
+            onComplete: () => item.destroy()
+        });
+    }
+
+    shake(item) {
+        this.tweens.add({
+            targets: item,
+            x: '+=' + this.s,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.inOut',
+            duration: 100
+        });
+    }
+
     hasItem(item) {
         return this.inventory.includes(item);
     }
